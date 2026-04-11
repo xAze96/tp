@@ -212,14 +212,19 @@ Example:
 
 #### Drafting a team : `draft`
 
-Tests if a specific team composition is valid.
+Validates and analyzes a team composition.
 
 Format: `draft (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN)​`
 
-* Selects 5 players by their index numbers or in-game names (IGN).
-* A valid team requires exactly 5 players with one player per role (TOP, JUNGLE, MID, BOT, SUPPORT).
+* Selects exactly 5 unique players by their index numbers or in-game names (IGN).
+* Analyzes the team composition and reports findings, including:
+  * Composition breakdown (count of players by role)
+  * Validation status (✓ Valid if exactly one player per role, ✗ Invalid otherwise)
+  * Average team rank
+  * Any composition issues (e.g., missing roles, duplicate roles)
 * You can mix indices and IGNs in the same command.
 * The `i/` prefix can optionally be omitted for non-numeric IGNs (e.g., `PlayerA` instead of `i/PlayerA`).
+* **Note**: Invalid compositions are not rejected; instead, the command shows diagnostic information about the issues.
 
 Examples:
 * `draft 1 2 3 4 5` Drafts players at indices 1-5.
@@ -546,7 +551,7 @@ draft 12 2 3 4 6
 ```
 
 **Expected Output:**
-An error message indicating the team composition is invalid, because you're missing a SUPPORT player (index 6 is Blaire, a TOP laner).
+A message indicating the team composition is invalid, because you're missing a SUPPORT player (index 6 is Blaire, a TOP laner).
 
 ---
 
